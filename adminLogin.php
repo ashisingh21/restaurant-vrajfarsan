@@ -9,7 +9,7 @@ $pageTitle ="Login | Lead Panel VrajFarsan";
 
     <h1 class='mb-20 text-primary'>Login</h1>
 
-    <form action='leadPanelLogin.php' method='POST'>
+    <form action='adminLogin.php' method='POST'>
         <div class="row">
             <label for="email">Username</label>
             <input type="text" name="username" required>
@@ -113,15 +113,14 @@ button:hover {
 }
 </style>
 
-
-<?php
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <?php
 $login = false;
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['submit']) && isset($_POST['username']) && isset($_POST['password'])) {
     $servername = "localhost";
-    $username = $leadPanelDatabaseUsername;
-    $password = $leadPanelDatabasePassword;
-    $dbname = $leadPanelDatabase;   
+    $username = $authdatabasename_username;
+    $password = $authdatabasename_password;
+    $dbname = $authdatabasename;   
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -133,7 +132,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['submit']) && isset($_
     $password = $_POST['password'];
 
     // Use prepared statements to prevent SQL injection
-    $sql = "SELECT * FROM $leadPanelDatabaseAuthTable WHERE username=? AND password=?";
+    $sql = "SELECT * FROM $authdatabasename_table WHERE username=? AND password=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $username, $password);
     $stmt->execute();
@@ -147,9 +146,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['submit']) && isset($_
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $username;
 
-        echo "<script>window.location.href = 'leadPanel.php';</script>";
+        echo "<script>window.location.href = 'admin.php';</script>";
         echo "<script>
-        Toastify({
+     Toastify({
                         text: 'Wohoo! Successfully logged in!',
                         style: {
                             background: 'green',
@@ -158,6 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['submit']) && isset($_
                         duration: 1500
 
                     }).showToast();
+                    
                     </script>";
         
     } else {

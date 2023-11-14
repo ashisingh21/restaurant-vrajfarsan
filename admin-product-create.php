@@ -11,6 +11,7 @@ include 'layout/header.php';   ?>
     <div class="d-flex justify-content-between align-items-center">
     <h1>Add Products</h1>
     <a class="go-back" href="admin"><i class="fa-solid fa-arrow-left"></i> Go back to Products List</a>
+   
     </div>
     <!-- <div class="d-flex justify-content-end">
         <form action="productPanelLogout.php" class="logout">

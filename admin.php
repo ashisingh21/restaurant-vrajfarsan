@@ -16,7 +16,9 @@ include 'layout/header.php';   ?>
     <div class="row">
         <div class="head col-md-12 d-flex justify-content-between align-items-center">
             <h2>Product List</h2>
-            <div><a class="product-btn" href="admin-product-create"><i class="fa-solid fa-plus"></i> New Product</a></div>
+            
+            <div><a class="product-btn" href="admin-product-create"><i class="fa-solid fa-plus"></i> New Product</a>
+             <a class="go-back logout" href="adminLogout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></div>
         </div>
 
         <div class="col-md-12">

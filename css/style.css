@@ -4190,6 +4190,23 @@ color:var(--brand-secondary-color)
   background: var(--brand-secondary-color);
   color: #fff!important;
 }
+
+.logout{
+  padding:4px 16px; 
+  background:none; 
+  border:3px solid var(--brand-primary-color); 
+  color: var(--brand-primary-color); 
+  font-weight:700;
+   font-family: 'Montserrat', sans-serif;
+}
+
+.logout:hover{
+
+  background:var(--brand-primary-color); 
+ 
+  color: #696969 !important; 
+ 
+}
 .product-container {
   display: flex;
   flex-wrap: wrap;
