@@ -4,8 +4,8 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
 echo "<script>window.location.href = 'adminLogin.php';</script>";
 exit;
 }
-$pagename = "Create Product";
-$pageDescription = "Admin for Adding Products";
+$pageTitle = "Update Product";
+$pageDescription = "Panel for Updating Products";
 include 'layout/header.php';   ?>
 
  <div id="loader-overlay">
@@ -15,7 +15,7 @@ include 'layout/header.php';   ?>
 
 
 <section class="container create-product">
-    <h1>Add Products</h1>
+    <h1>Update Product</h1>
     <!-- <div class="d-flex justify-content-end">
         <form action="productPanelLogout.php" class="logout">
             <button type="submit" class="pull-right product-btn">Logout</button>
@@ -68,6 +68,7 @@ include 'layout/header.php';   ?>
         <label for="photo">Product Image:</label>
         <input type="file" id="photo" name="photo" accept="image/*">
         <div id="existing-photo-container"></div>
+        <span>Current Photo</span>
 
         <button class="product-btn" type="submit" name="submit">Update</button>
     </form>

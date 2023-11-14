@@ -4,8 +4,8 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
 echo "<script>window.location.href = 'adminLogin.php';</script>";
 exit;
 }
-$pagename = "Create Product";
-$pageDescription = "Admin for Adding Products";
+$pageTitle = "Create Product";
+$pageDescription = "Panel for Creating Products";
 include 'layout/header.php';   ?>
 
 
@@ -16,7 +16,7 @@ include 'layout/header.php';   ?>
 
 <section class="container create-product">
     <div class="d-flex justify-content-between align-items-center">
-    <h1>Add Products</h1>
+    <h1>Add Product</h1>
     <a class="go-back" href="admin"><i class="fa-solid fa-arrow-left"></i> Go back to Products List</a>
    
     </div>
@@ -81,6 +81,7 @@ include 'layout/header.php';   ?>
 
 
 <?php include 'layout/footer.php';  ?>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
 <script src="js/admin.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"
@@ -110,7 +111,15 @@ bootstrapLink.setAttribute('crossorigin', 'anonymous');
 // Append the link element to the head of the document
 document.head.appendChild(bootstrapLink);
 
+var toasterLink = document.createElement('link');
 
+// Set attributes for the link element
+toasterLink.setAttribute('rel', 'stylesheet');
+toasterLink.setAttribute('href', 'https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css');
+
+
+// Append the link element to the head of the document
+document.head.appendChild(toasterLink);
 
 
 // product add
@@ -128,7 +137,19 @@ $("#product-form").submit(function(e) {
         contentType: false,
         success: function(response) {
             if (response.success) {
-                window.location.href = 'admin';
+                Toastify({
+                        text: 'Product Created Successfully!',
+                        style: {
+                            background: "linear-gradient(to right, #00b09b, #96c93d)",
+                        },
+
+                        duration: 1500
+
+                    }).showToast();
+                    setTimeout(() => {
+                         window.location.href = 'admin';
+                    }, 1000);
+               
             } else {
                 alert('An error occurred while submitting the form.');
             }

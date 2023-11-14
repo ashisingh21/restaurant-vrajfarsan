@@ -5,7 +5,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
 echo "<script>window.location.href = 'adminLogin.php';</script>";
 exit;
 }
-$pagename = "Admin";
+$pageTitle = "Admin";
 $pageDescription = "Admin for Adding Products";
 include 'layout/header.php';   ?>
 
@@ -24,6 +24,7 @@ include 'layout/header.php';   ?>
         </div>
 
         <div class="col-md-12">
+            
            <div id="type-buttons-container" class="mb-0">
          
            </div>
@@ -108,10 +109,27 @@ fetch('all-products-api.php')
 
         typeButtonsContainer.innerHTML = '';
 
+          function scrollButtonIntoView(selectedButton) {
+    const containerWidth = typeButtonsContainer.clientWidth;
+    const selectedButtonWidth = selectedButton.clientWidth;
+    const selectedButtonOffsetLeft = selectedButton.offsetLeft;
+    const scrollOffset = selectedButtonOffsetLeft - (containerWidth / 2) + (selectedButtonWidth / 2);
+
+    typeButtonsContainer.style.scrollBehavior = 'smooth'; // Enable smooth scrolling
+    typeButtonsContainer.scrollLeft = scrollOffset;
+
+    // Remove smooth scrolling behavior after the transition ends
+    typeButtonsContainer.addEventListener('scroll', () => {
+        typeButtonsContainer.style.scrollBehavior = 'auto';
+    }, { once: true });
+}
+
         // Create buttons for each product type
         uniqueTypes.forEach(type => {
             const button = document.createElement('button');
             button.textContent = type;
+
+           
             button.addEventListener('click', function() {
                 filterProductsByType(type);
                 
@@ -120,6 +138,7 @@ fetch('all-products-api.php')
                 });
                 
                 this.classList.add('active');
+                scrollButtonIntoView(this);
             });
             typeButtonsContainer.appendChild(button);
         });

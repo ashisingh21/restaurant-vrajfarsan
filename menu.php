@@ -759,6 +759,20 @@ document.addEventListener("DOMContentLoaded", () => {
         const uniqueTypes = ["All Products",...new Set(data.map(product => product.type))];
         const typeButtonsContainer = document.getElementById('type-buttons-container');
 
+          function scrollButtonIntoView(selectedButton) {
+    const containerWidth = typeButtonsContainer.clientWidth;
+    const selectedButtonWidth = selectedButton.clientWidth;
+    const selectedButtonOffsetLeft = selectedButton.offsetLeft;
+    const scrollOffset = selectedButtonOffsetLeft - (containerWidth / 2) + (selectedButtonWidth / 2);
+
+    typeButtonsContainer.style.scrollBehavior = 'smooth'; // Enable smooth scrolling
+    typeButtonsContainer.scrollLeft = scrollOffset;
+
+    // Remove smooth scrolling behavior after the transition ends
+    typeButtonsContainer.addEventListener('scroll', () => {
+        typeButtonsContainer.style.scrollBehavior = 'auto';
+    }, { once: true });
+}
         uniqueTypes.forEach(type => {
             const button = document.createElement('button');
           
@@ -771,6 +785,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
            
              this.classList.add('active');
+             scrollButtonIntoView(this)
               
           })
             typeButtonsContainer.appendChild(button);
@@ -816,7 +831,7 @@ document.addEventListener("DOMContentLoaded", () => {
     data.forEach(product => {
         productsContainer.innerHTML += `
             <div class="product-box">
-                <div><img src="img/product-photos/${product.photo}"></div>
+                <div><img alt="${product.photo.substring(0, product.photo.indexOf('.'))}" src="img/product-photos/${product.photo}"></div>
                 <div class="product-content">
                     <span class="product-name">${product.name}</span>
                     <span class="product-price">$${product.price} ${product.per}</span>

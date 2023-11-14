@@ -4465,9 +4465,13 @@ background-color:rgb(185, 33, 33)
 
 }
 #type-buttons-container{
-  margin-bottom: 40px;
+  border: 1px solid #f4f4f4;
+
+  /* box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px; */
+  
+  margin: 0 60px 40px;
   text-align: center;
-  justify-content: center;
+  justify-content: flex-start ;
 }
 
 
@@ -4481,7 +4485,8 @@ background-color:rgb(185, 33, 33)
   padding: 10px 16px;
   font-family: 'Montserrat', sans-serif;
   border-radius: 4px;
-  min-width: 200px;
+  min-width: 250px;
+  transition: .3s all;
 }
 
 
