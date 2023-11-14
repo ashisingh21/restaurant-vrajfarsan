@@ -39,9 +39,10 @@ include 'layout/header.php';   ?>
                     </select>
                 </div>
             </div>
-            <div class="w-25 ">
+            <div class="price-group w-25 ">
                 <label for="price">Product Price:</label>
                 <input type="text" pattern="\d+(\.\d{1,2})?" id="price" name="price" required>
+                <span class="dollar">$</span>
             </div>
             <div class="w-25">
                 <label for="per">Quantity (Per pack / Each / etc):</label>

@@ -1,4 +1,10 @@
 <?php
+session_start();
+// var_dump($_SESSION);
+if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
+echo "<script>window.location.href = 'leadPanelLogin.php';</script>";
+exit;
+}
 $pagename = "Admin";
 $pageDescription = "Admin for Adding Products";
 include 'layout/header.php';   ?>
@@ -8,37 +14,37 @@ include 'layout/header.php';   ?>
 <div id="pjax-container" class="action container-fluid">
 
     <div class="row">
-
-
-        <div class="col-md-12 d-flex justify-content-between align-items-center">
+        <div class="head col-md-12 d-flex justify-content-between align-items-center">
             <h2>Product List</h2>
-            <div><a class="product-btn" href="admin-product-create">Create Product</a></div>
+            <div><a class="product-btn" href="admin-product-create"><i class="fa-solid fa-plus"></i> New Product</a></div>
         </div>
 
-        <div id="type-buttons-container">
+        <div class="col-md-12">
+           <div id="type-buttons-container" class="mb-0">
          
+           </div>
         </div>
+      
+        <div class="col-md-12" style="overflow:auto;">
 
-
-        <table class="view-product" border="1">
+           <table class="view-product" border="1">
             <thead>
                 <tr>
-                    <th>Serial Number</th>
-                    <th>Product Name</th>
-                    <th>Product Type</th>
-                    <th>Product Price</th>
-                    <th>Quantity (Per Pack)</th>
-                    <th>Product Description</th>
-
-                    <th>Product Image</th>
+                    <th>S. No</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Description</th>
+                    <th>Image</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
 
             </tbody>
-        </table>
-
+           </table>
+        </div>
     </div>
 </div>
 
@@ -89,22 +95,27 @@ document.head.appendChild(toasterLink);
 
 // api call to fetch products
 
-
-
 fetch('all-products-api.php')
     .then(response => response.json())
     .then(data => {
-        const uniqueTypes = ["All Products",...new Set(data.map(product => product.type))];
+        const uniqueTypes = ["All Products", ...new Set(data.map(product => product.type))];
         const typeButtonsContainer = document.getElementById('type-buttons-container');
-   
 
-         typeButtonsContainer.innerHTML = '';
+        typeButtonsContainer.innerHTML = '';
 
         // Create buttons for each product type
         uniqueTypes.forEach(type => {
             const button = document.createElement('button');
             button.textContent = type;
-            button.addEventListener('click', () => filterProductsByType(type));
+            button.addEventListener('click', function() {
+                filterProductsByType(type);
+                
+                document.querySelectorAll('#type-buttons-container button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                this.classList.add('active');
+            });
             typeButtonsContainer.appendChild(button);
         });
 
@@ -114,7 +125,6 @@ fetch('all-products-api.php')
     .catch(error => {
         console.error('Error fetching product types:', error);
 });
-
 
 function renderProductRow(item, serialNumber) {
     const row = document.createElement('tr');
@@ -269,10 +279,7 @@ function updateProduct(id) {
             id: id
         }),
         success: function(data) {
-
-
-
-            Toastify({
+          Toastify({
                 text: `${data.message}`,
                 className: "info",
                 style: {

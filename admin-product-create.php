@@ -8,7 +8,10 @@ include 'layout/header.php';   ?>
 
 
 <section class="container create-product">
+    <div class="d-flex justify-content-between align-items-center">
     <h1>Add Products</h1>
+    <a class="go-back" href="admin"><i class="fa-solid fa-arrow-left"></i> Go back to Products List</a>
+    </div>
     <!-- <div class="d-flex justify-content-end">
         <form action="productPanelLogout.php" class="logout">
             <button type="submit" class="pull-right product-btn">Logout</button>
@@ -34,14 +37,15 @@ include 'layout/header.php';   ?>
                         <option>Weekend Special Breakfast</option>
                         <option>Extras</option>
                         <option>Must Try Items</option>
-                 
-
                     </select>
                 </div>
             </div>
-            <div class="w-25 ">
+            <div class=" w-25 ">
                 <label for="price">Product Price:</label>
-                <input type="text" pattern="\d+(\.\d{1,2})?" id="price" name="price" required>
+                <div class="price-group" >
+                <input type="text" pattern="\d+(\.\d{1,2})?" id="price" name="price" required><span class="dollar">$</span>
+                </div>
+                
             </div>
             <div class="w-25">
                 <label for="per">Quantity (Per pack / Each / etc):</label>
@@ -59,7 +63,10 @@ include 'layout/header.php';   ?>
         <label for="photo">Product Image:</label>
         <input type="file" id="photo" name="photo" accept="image/*" required>
 
-        <button class="product-btn" type="submit" name="submit">Create</button>
+
+        <button class="product-btn" type="submit" name="submit">Create Product</button>
+        
+    
     </form>
 </section>
 

@@ -747,6 +747,7 @@ include 'layout/header.php';  ?>
 
 
 <script>
+
 document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementsByTagName('body')[0].classList.add('menu-page');
@@ -755,7 +756,7 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch('all-products-api.php')
     .then(response => response.json()) // Parse the JSON data
     .then(data => {
-        const uniqueTypes = [...new Set(data.map(product => product.type))];
+        const uniqueTypes = ["All Products",...new Set(data.map(product => product.type))];
         const typeButtonsContainer = document.getElementById('type-buttons-container');
 
         uniqueTypes.forEach(type => {
@@ -771,20 +772,29 @@ document.addEventListener("DOMContentLoaded", () => {
            
              this.classList.add('active');
               
-})
+          })
             typeButtonsContainer.appendChild(button);
 
-        });
-
-   function filterProductsByType(selectedType) {
+    });
+    
+    function filterProductsByType(selectedType) {
     // Filter products by the selected type
-    const filteredProducts = data.filter(product => product.type === selectedType);
+
+      if(selectedType == "All Products"){
+                renderProducts(data);
+            } else {
+        const filteredProducts = data.filter(product => product.type === selectedType);
+            renderProducts(filteredProducts);
+            }
+    }
+    
+    function renderProducts(products) {
 
     // Clear the existing content in the products container
     const productsContainer = document.getElementById('product-wrapper');
     productsContainer.innerHTML = '';
     // Iterate through the filtered products and create HTML for each product
-    filteredProducts.forEach(product => {
+    products.forEach(product => {
         productsContainer.innerHTML += `
             <div class="product-box">
                 <div><img src="img/product-photos/${product.photo}"></div>
@@ -792,14 +802,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     <span class="product-name">${product.name}</span>
                     <span class="product-price">$${product.price} ${product.per}</span>
                     <p class="product-description">${product.description}</p>
-                </div>
+                </div>  
             </div>
         `;
     });
-  }
-
-
- const productsContainer = document.getElementById('product-wrapper');
+    }
+    
+    
+    const productsContainer = document.getElementById('product-wrapper');
     productsContainer.innerHTML = '';
 
     // Iterate through the filtered products and create HTML for each product
@@ -825,6 +835,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
  
 });
+
 </script>
 
 
