@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Redirect https://vrajfarsan.ca/index to https://vrajfarsan.ca
+  RewriteCond %{HTTPS} on
+  RewriteRule ^index$ https://vrajfarsan.ca [L,R=301]
+
+  # Redirect https://www.vrajfarsan.ca to https://vrajfarsan.ca
+  RewriteCond %{HTTPS} on
+  RewriteCond %{HTTP_HOST} ^www\.vrajfarsan\.ca$ [NC]
+  RewriteRule ^(.*)$ https://vrajfarsan.ca/$1 [L,R=301]
+
+  # Remove .php extension
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^([^\.]+)$ $1.php [NC,L]
+</IfModule>
