@@ -2,14 +2,16 @@
 session_start();
 // var_dump($_SESSION);
 if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
-echo "<script>window.location.href = 'leadPanelLogin.php';</script>";
+echo "<script>window.location.href = 'adminLogin.php';</script>";
 exit;
 }
 $pagename = "Admin";
 $pageDescription = "Admin for Adding Products";
 include 'layout/header.php';   ?>
 
-
+  <div id="loader-overlay">
+    <div class="loader"></div>
+  </div>
 
 <div id="pjax-container" class="action container-fluid">
 
@@ -54,6 +56,7 @@ include 'layout/header.php';   ?>
 
 <?php include 'layout/footer.php';  ?>
 <script src="https://cdn.jsdelivr.net/npm/jquery.pjax.js"></script>
+<script src="js/admin.js"></script>
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js">
 </script>

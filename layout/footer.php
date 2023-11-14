@@ -1,4 +1,6 @@
- <div id="copyright-container">
+
+
+<div id="copyright-container">
 
      <div class="container">
 
@@ -25,6 +27,7 @@
      <a href="#" class="scroll-up"><i class="fa fa-angle-double-up"></i></a>
 
  </div>
+ 
  <script src="js/main.js"></script>
  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">

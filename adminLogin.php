@@ -4,7 +4,9 @@ session_start();
 $pageTitle ="Login | Lead Panel VrajFarsan";
         $pageDescription ="Login";
     include 'layout/header.php';?>
-
+ <div id="loader-overlay">
+    <div class="loader"></div>
+  </div>
 <div class="login-wrapper">
 
     <h1 class='mb-20 text-primary'>Login</h1>
@@ -112,8 +114,20 @@ button:hover {
     }
 }
 </style>
-
+<script src="js/admin.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+<script>
+    var toasterLink = document.createElement('link');
+
+// Set attributes for the link element
+toasterLink.setAttribute('rel', 'stylesheet');
+toasterLink.setAttribute('href', 'https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css');
+
+
+// Append the link element to the head of the document
+document.head.appendChild(toasterLink);
+</script>
 <?php
 $login = false;
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['submit']) && isset($_POST['username']) && isset($_POST['password'])) {

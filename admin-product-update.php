@@ -1,9 +1,16 @@
 <?php
+session_start();
+if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
+echo "<script>window.location.href = 'adminLogin.php';</script>";
+exit;
+}
 $pagename = "Create Product";
 $pageDescription = "Admin for Adding Products";
 include 'layout/header.php';   ?>
 
-
+ <div id="loader-overlay">
+    <div class="loader"></div>
+  </div>
 
 
 
@@ -40,9 +47,10 @@ include 'layout/header.php';   ?>
                 </div>
             </div>
             <div class="price-group w-25 ">
-                <label for="price">Product Price:</label>
-                <input type="text" pattern="\d+(\.\d{1,2})?" id="price" name="price" required>
-                <span class="dollar">$</span>
+                 <label for="price">Product Price:</label>
+                <div class="price-group" >
+                <input type="text" pattern="\d+(\.\d{1,2})?" id="price" name="price" required><span class="dollar">$</span>
+                </div>
             </div>
             <div class="w-25">
                 <label for="per">Quantity (Per pack / Each / etc):</label>
@@ -75,6 +83,7 @@ include 'layout/header.php';   ?>
     integrity="sha512-WW8/jxkELe2CAiE4LvQfwm1rajOS8PHasCCx+knHG0gBHt8EXxS6T6tJRTGuDQVnluuAvMxWF4j8SNFDKceLFg=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <script src="js/admin.js"></script>
 <script>
 var metaTag = document.createElement('meta');
 

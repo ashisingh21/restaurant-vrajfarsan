@@ -1,11 +1,18 @@
 <?php
+session_start();
+if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
+echo "<script>window.location.href = 'adminLogin.php';</script>";
+exit;
+}
 $pagename = "Create Product";
 $pageDescription = "Admin for Adding Products";
 include 'layout/header.php';   ?>
 
 
 
-
+ <div id="loader-overlay">
+    <div class="loader"></div>
+  </div>
 
 <section class="container create-product">
     <div class="d-flex justify-content-between align-items-center">
@@ -75,6 +82,7 @@ include 'layout/header.php';   ?>
 
 <?php include 'layout/footer.php';  ?>
 
+<script src="js/admin.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"
     integrity="sha512-WW8/jxkELe2CAiE4LvQfwm1rajOS8PHasCCx+knHG0gBHt8EXxS6T6tJRTGuDQVnluuAvMxWF4j8SNFDKceLFg=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
