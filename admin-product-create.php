@@ -135,8 +135,12 @@ $("#product-form").submit(function(e) {
         data: formData,
         processData: false,
         contentType: false,
+        beforeSend: function(xhr) {
+       $('#loader-overlay').show()
+         },
         success: function(response) {
             if (response.success) {
+                $('#loader-overlay').hide()
                 Toastify({
                         text: 'Product Created Successfully!',
                         style: {

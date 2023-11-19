@@ -172,7 +172,11 @@ if (!photoInput.files || photoInput.files.length === 0) {
         data: formData,
         processData: false,
         contentType: false,
+          beforeSend: function(xhr) {
+       $('#loader-overlay').show()
+         },
         success: function(data) {
+              $('#loader-overlay').hide()
                 Toastify({
                 text: `${data.message}`,
                 className: "info",
