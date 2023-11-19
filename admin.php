@@ -20,6 +20,8 @@ include 'layout/header.php';   ?>
             <h2>Product List</h2>
             
             <div><a class="product-btn" href="admin-product-create"><i class="fa-solid fa-plus"></i> New Product</a>
+            <a class="product-btn" href="admin-category-create"><i class="fa-solid fa-plus"></i> New Category</a>
+            <a class="product-btn" href="all-category"><i class="fa-solid fa-list"></i> Category List</a>
              <a class="go-back logout" href="adminLogout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></div>
         </div>
 
