@@ -4369,7 +4369,7 @@ color:var(--brand-secondary-color)
   border-radius: 4px;
 }
 
-table.view-product {
+table.view-product,table.view-category {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
@@ -4379,7 +4379,8 @@ table.view-product {
 }
 
 .view-product th,
-.view-product td {
+.view-product td,.view-category th,
+.view-category td {
   border: 1px solid #ddd;
   padding: 2px 6px;
   text-align: left;
