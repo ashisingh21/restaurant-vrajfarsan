@@ -31,16 +31,8 @@ include 'layout/header.php';   ?>
             <div class="w-50">
                 <label for="type">Product Type:</label>
                 <div>
-                    <select name="type" class="w-75">
-                                  <option>Snacks</option>
-                        <option>Packaged Snacks</option>
-                        <option>Sweets</option>
-                        <option>Fix Thali</option>
-                        <option>Kathiyawadi Thali</option>
-                        <option>Unlimited Thali</option>
-                        <option>Weekend Special Breakfast</option>
-                        <option>Extras</option>
-                        <option>Must Try Items</option>
+                    <select id="category" name="type" class="w-75">
+                            
                  
 
                     </select>
@@ -145,8 +137,23 @@ if (updateProductData) {
         photoContainer.appendChild(img);
     }
     // Remove the stored product data from localStorage to avoid conflicts
-    // localStorage.removeItem('updateProductData');
+    localStorage.removeItem('updateProductData');
 }
+
+fetch('all-category-api.php')
+    .then(response => response.json())
+    .then(data => {
+        
+      data.forEach(c => {
+            var option = $('<option>').text(c.name);
+            $('#category').append(option);
+        });
+
+        document.querySelector('select[name="type"]').value = preFilledData.type || '';
+    })
+    .catch(error => {
+        console.error('Error fetching product types:', error);
+});
 
 
 // product add
