@@ -4172,6 +4172,34 @@ color:var(--brand-secondary-color)
 }
 
 
+@media (max-width:678px){
+.head{
+flex-wrap: wrap;
+}
+.head div{
+      display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-btn {
+
+  width: 160px;
+
+  margin: 6px 4px;
+
+}
+.container div.justify-content-between{
+  flex-wrap: wrap;
+}
+
+.product-btn:nth-child(3){
+  margin-right:12px;
+}
+
+}
+
 
 .product-btn:hover {
   background: var(--brand-primary-color);

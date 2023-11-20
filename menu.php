@@ -39,7 +39,7 @@ include 'layout/header.php';  ?>
           
             <div class="col-md-12 centered mb-0">
                 <div class="custom-heading style-1">
-                    <h3><span>The menu</span></h3>
+                    <h3><span>The Menu</span></h3>
                     <h3>Welcome to Vraj Farsan</h3>
                     <div class="divider style-1 center">
                         <span class="hr-simple left"></span>
