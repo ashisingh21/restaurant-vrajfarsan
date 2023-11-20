@@ -22,8 +22,7 @@ include 'layout/header.php';   ?>
             <h2>Category List</h2>
             
             <div><a class="product-btn" href="admin-category-create"><i class="fa-solid fa-plus"></i> New Category</a>
-            <a class="product-btn" href="admin"><i class="fa-solid fa-list"></i> All Products</a>
-             <a class="go-back logout" href="adminLogout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></div>
+            <a class="product-btn" href="admin"><i class="fa-solid fa-list"></i> All Products</a></div>
         </div>
 
       
